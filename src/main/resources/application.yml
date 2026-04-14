@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: task-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/task_backend?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: task_app
+    password: task_app_pwd
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  flyway:
+    enabled: false
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
+
+app:
+  task:
+    default-claim-delay-seconds: 1800
+
+openai:
+  base-url: https://api.openai.com/v1
+  api-key: ${OPENAI_API_KEY:}
+  model: gpt-4o-mini
+  timeout-seconds: 30
+
+ollama:
+  base-url: http://localhost:11434
+  model: qwen2.5:1.5b
