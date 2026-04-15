@@ -35,13 +35,13 @@ public class AiChatController {
     }
 
     @GetMapping("/conversations")
-    public ApiResponse<List<AiConversationDto>> conversations(@RequestParam String userId) {
+    public ApiResponse<List<AiConversationDto>> conversations(@RequestParam("userId") String userId) {
         // 获取用户的历史会话列表
         return ApiResponse.success(chatService.listConversations(userId));
     }
 
     @GetMapping("/messages/{conversationId}")
-    public ApiResponse<List<AiMessageDto>> messages(@PathVariable String conversationId) {
+    public ApiResponse<List<AiMessageDto>> messages(@PathVariable("conversationId") String conversationId) {
         // 获取指定会话的消息列表
         return ApiResponse.success(chatService.listMessages(conversationId));
     }

@@ -12,6 +12,7 @@ import com.h5page.taskbackend.entity.TaskConfigEmbeddable;
 import com.h5page.taskbackend.entity.TaskEntity;
 import com.h5page.taskbackend.entity.TaskProgressEmbeddable;
 import com.h5page.taskbackend.enums.TaskStatus;
+import com.h5page.taskbackend.enums.TaskType;
 import com.h5page.taskbackend.repository.TaskRepository;
 import com.h5page.taskbackend.service.TaskService;
 import org.springframework.stereotype.Service;
@@ -54,7 +55,11 @@ public class TaskServiceImpl implements TaskService {
             return null;
         }
         TaskEntity entity = optional.get();
-        entity.setStatus(TaskStatus.COMPLETED);
+        if (entity.getType() == TaskType.DELAYED_CLAIM) {
+            entity.setStatus(TaskStatus.CLAIMABLE);
+        } else {
+            entity.setStatus(TaskStatus.COMPLETED);
+        }
         TaskEntity saved = taskRepository.save(entity);
         return toDto(saved);
     }

@@ -1,5 +1,7 @@
 package com.h5page.taskbackend.enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Task status lifecycle for client display and backend processing.
  */
@@ -20,6 +22,11 @@ public enum TaskStatus {
     }
 
     public String getCode() {
+        return code;
+    }
+
+    @JsonValue
+    public String toJson() {
         return code;
     }
 

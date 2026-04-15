@@ -23,7 +23,7 @@ public class EnumController {
     }
 
     @GetMapping("/{enumName}")
-    public ApiResponse<List<EnumItemDto>> getEnums(@PathVariable String enumName) {
+    public ApiResponse<List<EnumItemDto>> getEnums(@PathVariable("enumName") String enumName) {
         // Example: /api/enums/TaskType or /api/enums/TaskStatus
         return ApiResponse.success(enumService.getEnumItems(enumName));
     }

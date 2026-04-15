@@ -1,5 +1,7 @@
 package com.h5page.taskbackend.enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Task type definitions used by both frontend and backend.
  */
@@ -18,6 +20,11 @@ public enum TaskType {
     }
 
     public String getCode() {
+        return code;
+    }
+
+    @JsonValue
+    public String toJson() {
         return code;
     }
 

@@ -30,8 +30,8 @@ public class TaskController {
 
     @GetMapping
     public ApiResponse<List<TaskItemDto>> getTasks(
-            @RequestParam(required = false) String userId,
-            @RequestParam(required = false) String activityId) {
+            @RequestParam(value = "userId", required = false) String userId,
+            @RequestParam(value = "activityId", required = false) String activityId) {
         // Query tasks by user/activity if provided.
         return ApiResponse.success(taskService.getTasks(userId, activityId));
     }
